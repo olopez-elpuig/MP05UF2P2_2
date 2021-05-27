@@ -40,8 +40,9 @@ class HashTableTest {
 
         Assertions.assertEquals(2, ht.count());
         Assertions.assertEquals(16, ht.size());
-        Assertions.assertEquals("bucket[1] = [1, a]\n" +
-                "bucket[2] = [2, b]", ht.toString());
+        Assertions.assertEquals("\n" +
+                " bucket[1] = [1, a]\n" +
+                " bucket[2] = [2, b]", ht.toString());
     }
 
     @org.junit.jupiter.api.Test
