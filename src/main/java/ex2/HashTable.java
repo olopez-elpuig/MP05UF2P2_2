@@ -94,20 +94,12 @@ public class HashTable {
         if(entries[hash] != null) {
             HashEntry temp = entries[hash];
 
-            //Como en el método anterior, se trata de borrar un HashEntry que no existe, el programa saltaba error.
-            //Se ha corregido el error introduciendo una condición que sale del bucle si
-            //se intenta llegar a una posición que no existe.
+
             temp = getHashEntry(key, temp);
 
-            //Dado que he implementado una extraccion de metodo, es necesario que las pruebas sigan, por ello he implementado
-            //este if, en cambio el IDE no es capaz de añadirlo despues de la refacción.
+
             if (temp == null) return;
 
-            //if(temp.prev == null) entries[hash] = null;             //esborrar element únic (no col·lissió)
-
-            //El error encontrado es que el condicional original eliminaba todos los HashEntry al intentar eliminar el primero,
-            //para ello le he añadido un condicional que comprueba que si el primer/segundo/tercero elemento es tambien el unico se elimina y si no lo es pasa
-            //el siguiente elemento a la primera posicion o posicion de delante dependiendo del elemento.
             if (temp.prev == null) {
                 if (temp.next != null) {
                     temp.next.prev = null;

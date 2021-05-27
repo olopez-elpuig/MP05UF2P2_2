@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class HashTableTest {
 
     @org.junit.jupiter.api.Test
-    void hashtable_buida() {
+    void hashtable_1buida() {
         HashTable ht = new HashTable();
 
         Assertions.assertEquals(0, ht.count());

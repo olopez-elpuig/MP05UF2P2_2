@@ -54,8 +54,7 @@ public class HashTable {
         if(entries[hash] != null) {
             HashEntry temp = entries[hash];
 
-            while( !temp.key.equals(key))
-                temp = temp.next;
+            temp = getHashEntry(key, temp);
 
             return temp.value;
         }
@@ -72,8 +71,7 @@ public class HashTable {
         if(entries[hash] != null) {
 
             HashEntry temp = entries[hash];
-            while( !temp.key.equals(key))
-                temp = temp.next;
+            temp = getHashEntry(key, temp);
 
             if(temp.prev == null) entries[hash] = null;             //esborrar element únic (no col·lissió)
             else{
@@ -81,6 +79,12 @@ public class HashTable {
                 temp.prev.next = temp.next;                         //esborrem temp, per tant actualitzem el següent de l'anterior
             }
         }
+    }
+
+    private HashEntry getHashEntry(String key, HashEntry temp) {
+        while( !temp.key.equals(key))
+            temp = temp.next;
+        return temp;
     }
 
     private int getHash(String key) {
@@ -210,22 +214,7 @@ public class HashTable {
         return  foundKeys;
     }
 
-    public static void main(String[] args) {
-        HashTable hashTable = new HashTable();
-        
-        // Put some key values.
-        for(int i=0; i<30; i++) {
-            final String key = String.valueOf(i);
-            hashTable.put(key, key);
-        }
-
-        // Print the HashTable structure
-        log("****   HashTable  ***");
-        log(hashTable.toString());
-        log("\nValue for key(20) : " + hashTable.get("20") );
-    }
-
-    private static void log(String msg) {
+    static void log(String msg) {
         System.out.println(msg);
     }
 }
